@@ -270,6 +270,33 @@ def clone_or_update_repo(name, branch, dir_name, owner="openwisp", dest=None):
     Clone or update a repository based on the module name and branch provided.
     If the repository already exists, update it. Otherwise, clone the repository.
     """
+    # Support for building with local changes (issue #251)
+    # When building openwisp-docs locally (not in PRODUCTION mode),
+    # use the local repository files instead of cloning from GitHub
+    if name == "openwisp-docs" and not os.environ.get("PRODUCTION"):
+        print(f"Using local directory for '{name}'")
+        os.makedirs("staging-dir", exist_ok=True)
+        # Items to exclude when creating symlinks
+        exclude_items = {"staging-dir", "modules", "_build", ".git", "__pycache__"}
+        for item in os.listdir("."):
+            # Skip hidden files
+            if item.startswith("."):
+                continue
+            if item in exclude_items:
+                continue
+            # Skip virtual environments (detected by pyvenv.cfg file)
+            if os.path.isdir(item) and os.path.exists(os.path.join(item, "pyvenv.cfg")):
+                continue
+            src_path = os.path.abspath(item)
+            dest_path = os.path.join("staging-dir", item)
+            # Remove existing symlink if present
+            if os.path.islink(dest_path):
+                os.unlink(dest_path)
+            # Create symlink if it doesn't exist
+            if not os.path.exists(dest_path):
+                os.symlink(src_path, dest_path)
+        return
+
     repository = f"{owner}/{name}"
     if os.environ.get("SSH"):
         # SSH cloning is a convenient option for local development, as it
@@ -286,14 +313,14 @@ def clone_or_update_repo(name, branch, dir_name, owner="openwisp", dest=None):
     if os.path.exists(clone_path):
         print(f"Repository '{name}' already exists. Updating...")
         subprocess.run(
-            ["git", "fetch", "origin", f"refs/heads/{branch}:refs/heads/{branch}"],
+            ["git", "fetch", "origin", branch],
             cwd=clone_path,
             check=True,
         )
         # "-c advice.detachedHead=false" is used to suppress the warning
         # about being in a detached HEAD state when checking out tags.
         subprocess.run(
-            ["git", "-c", "advice.detachedHead=false", "checkout", f"refs/heads/{branch}"],
+            ["git", "-c", "advice.detachedHead=false", "checkout", branch],
             cwd=clone_path,
             check=True,
         )
