@@ -59,7 +59,8 @@ Automatic Extraction of OpenWrt Firmware Image Metadata
     Languages and technologies used: **Python**, **Django**, **Celery**,
     **OpenWrt**, **REST API**.
 
-    **Mentors**: *Federico Capoano*, *Alexandre Vincent*, *Sankalp*.
+    **Mentors**: *Federico Capoano*, *Alexandre Vincent*, *Sankalp*,
+    *Aryaman*.
 
     **Project size**: 350 hours.
 
@@ -791,7 +792,7 @@ Add more timeseries database clients to OpenWISP Monitoring
     Languages and technologies used: **Python**, **Django**, **InfluxDB**,
     **Elasticsearch**.
 
-    **Mentors**: *Federico Capoano*, *Clément Beaujoin*, *Aryaman*,
+    **Mentors**: *Federico Capoano*, *Clément Beaujoin*, *Kapil Bansal*,
     *Sankalp*, *Gagan Deep*.
 
     **Project size**: 350 hours.
@@ -862,7 +863,8 @@ OpenWISP VPN Deployer Linux Package
     **WebSockets**, **OpenVPN**, **WireGuard**, **WireGuard over VXLAN**,
     **ZeroTier**.
 
-    **Mentors:** *Federico Capoano*, *Gagan Deep*, *Oliver Kraitschy*.
+    **Mentors:** *Federico Capoano*, *Gagan Deep*, *Oliver Kraitschy*,
+    *Aryaman*.
 
     **Project size:** 350 hours.
 
@@ -1215,7 +1217,7 @@ Resource Aware Priority Task Scheduling for OpenWISP
     Languages and technologies used: **Python**, **Django**, **Celery**,
     **gevent**.
 
-    **Mentors**: *Federico Capoano*, *Gagan Deep*.
+    **Mentors**: *Federico Capoano*, *Gagan Deep*, *Kapil Bansal*.
 
     **Project size**: 350 hours.
 
