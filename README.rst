@@ -185,3 +185,5 @@ Need help?
   <http://www.sphinx-doc.org/en/stable/tutorial.html>`_.
 - Feel free to post any doubt or comment through our `support channels
   <http://openwisp.org/support.html>`_.
+<!-- minor improvement -->
+
